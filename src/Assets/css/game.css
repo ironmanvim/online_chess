@@ -1,0 +1,28 @@
+body {
+    color: white;
+}
+
+.game {
+    border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("../image/background.jpg") center center;
+    background-size: cover;
+}
+.status {
+    color: white;
+}
+
+button {
+    height: 50px;
+    background: black;
+    color: white;
+    width: 200px;
+}
+
+input {
+    height: 43px;
+}

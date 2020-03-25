@@ -1,0 +1,62 @@
+.chess {
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px solid yellow;
+}
+
+.chess-board {
+    display: inline-flex;
+    flex-direction: column;
+    /*border: 1px solid green;*/
+    border: 1px solid lightgray;
+}
+
+.chess-row {
+    display: flex;
+    /*border: 1px solid blue;*/
+}
+
+.chess-cell,
+.chess-cell:focus,
+.chess-cell:active,
+.chess-cell:hover {
+    display: inline-flex;
+    height: 70px;
+    width: 70px;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    /*border: 1px solid red;*/
+    user-select: none;
+    cursor: pointer;
+}
+
+.chess-turn {
+
+}
+
+.reset-chess {
+
+}
+
+.chess-cell-light_background {
+    background: white;
+    border: 3px solid white;
+}
+
+.chess-cell-dark_background {
+    background: lightgray;
+    border: 3px solid lightgray;
+}
+
+.chess-cell-selected {
+    border: 3px solid green;
+}
+
+.chess-cell-move-selected {
+    border: 3px solid blue;
+}
+
+.chess-cell-hit-selected {
+    border: 3px solid red;
+}
