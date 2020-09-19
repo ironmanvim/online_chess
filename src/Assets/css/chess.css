@@ -60,3 +60,7 @@
 .chess-cell-hit-selected {
     border: 3px solid red;
 }
+
+.game-end {
+    background-color: red;
+}

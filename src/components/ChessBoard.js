@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import ChessRow from "./ChessRow";
 import chessRules from "../js/chessRules";
 import websocket from "../js/websocket";
@@ -124,7 +124,7 @@ const selectAndMove = (row, column, chessBoard, setChessBoard, turn, setTurn, ga
                 column,
             };
 
-            let {movement, firstMovement, killMovement} = chessRules[newChessBoard[row][column][0]];
+            let { movement, firstMovement, killMovement } = chessRules[newChessBoard[row][column][0]];
             console.log(row, column);
             let currentMovements = [...movement];
             if (newChessBoard[row][column][2]) {
@@ -172,23 +172,25 @@ const selectAndMove = (row, column, chessBoard, setChessBoard, turn, setTurn, ga
     setChessBoard(newChessBoard);
 };
 const movementArray = [];
-export default function ChessBoard({chessBoard, setChessBoard, turn, setTurn, gameID, team}) {
+export default function ChessBoard({ chessBoard, setChessBoard, turn, setTurn, gameID, team, gameOver }) {
 
     const selectAndMoveChessCell = (row, column, type = null) => {
-        if (type !== null) {
-            selectAndMove(row, column, chessBoard, setChessBoard, turn, setTurn, gameID, type);
-        } else if (team === turn) {
-            selectAndMove(row, column, chessBoard, setChessBoard, turn, setTurn, gameID, type);
+        if (!gameOver) {
+            if (type !== null) {
+                selectAndMove(row, column, chessBoard, setChessBoard, turn, setTurn, gameID, type);
+            } else if (team === turn) {
+                selectAndMove(row, column, chessBoard, setChessBoard, turn, setTurn, gameID, type);
+            }
         }
     };
 
     useEffect(() => {
         function moveChessCell(event) {
-            let {data} = event;
+            let { data } = event;
             data = JSON.parse(data);
             console.log(data);
             if (data.type === "chess_move") {
-                const {move} = data;
+                const { move } = data;
                 selectAndMoveChessCell(move.from.row, move.from.column, "from_server");
                 movementArray.push([move.to.row, move.to.column]);
             }
@@ -209,7 +211,7 @@ export default function ChessBoard({chessBoard, setChessBoard, turn, setTurn, ga
     }, [chessBoard]);
 
     const renderChessRows = chessBoard.map((chessRow, index) =>
-        <ChessRow key={index} chessRow={chessRow} rowIndex={index} selectAndMoveChessCell={selectAndMoveChessCell}/>
+        <ChessRow key={index} chessRow={chessRow} rowIndex={index} selectAndMoveChessCell={selectAndMoveChessCell} />
     );
 
     return (

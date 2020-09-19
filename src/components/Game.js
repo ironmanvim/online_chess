@@ -10,6 +10,8 @@ export default function Game() {
     const [defaultChessBoard, setDefaultChessBoard] = useState(null);
     const [defaultTurn, setDefaultTurn] = useState(null);
     const [team, setTeam] = useState(null);
+    const [gameOver, setGameOver] = useState(false);
+    const [winner, setWinner] = useState(null);
 
 
     console.log(defaultChessBoard, defaultTurn);
@@ -70,7 +72,14 @@ export default function Game() {
     };
 
     return (
-        <div className="rows game">
+        <div className={`rows game ${gameOver ? "game-end" : ""}`}>
+            <div className="row no-flex test test-blue status">
+                {
+                    gameOver && (
+                        winner === 'w' ? "white is winner" : "black is winner"
+                    )
+                }
+            </div>
             <div className="row no-flex test test-blue status">
                 {
                     user !== null &&
@@ -83,7 +92,8 @@ export default function Game() {
                     <>
                         {`GameID: ${game}`}
                         <Chess gameID={game} defaultTurn={defaultTurn} defaultChessBoard={defaultChessBoard}
-                               team={team}/>
+                               team={team} gameOver={gameOver} setGameOver={setGameOver}
+                               winner={winner} setWinner={setWinner}/>
                     </>
                 }
             </div>
