@@ -57,9 +57,9 @@ export default function Chess({ gameID, defaultChessBoard, defaultTurn, team, ga
                 {gameOver && "Game Over"}
             </div>
             <div className="reset-chess">
-                <button onClick={() => resetChessBoard()}>
+                {/* <button onClick={() => resetChessBoard()}>
                     Reset
-                </button>
+                </button> */}
             </div>
         </div>
     );
